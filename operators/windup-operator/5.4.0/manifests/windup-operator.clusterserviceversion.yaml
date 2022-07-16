@@ -1,0 +1,282 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  name: windup-operator.5.4.0
+  namespace: placeholder
+  annotations:
+    alm-examples: >-
+      [
+       {
+         "apiVersion": "windup.jboss.org/v1",
+         "kind": "Windup",
+         "metadata": {
+           "namespace": "windup",
+           "name": "windup",
+           "labels": {
+             "application": "windup"
+           }
+         },
+         "spec": {
+           "hostname_http": "",
+           "volumeCapacity": "20G",
+           "mta_Volume_Capacity": "20G",
+           "docker_images_repository": "quay.io",
+           "docker_images_user": "windupeng",
+           "docker_images_tag": "5.3.0.Final",
+           "docker_image_web": "windup-web-openshift",
+           "docker_image_executor": "windup-web-openshift-messaging-executor",
+           "messaging_serializer": "http.post.serializer",
+           "db_jndi": "java:jboss/datasources/WindupServicesDS",
+           "db_username": "",
+           "db_password": "",
+           "db_min_pool_size": "",
+           "db_max_pool_size": "",
+           "db_tx_isolation": "",
+           "mq_cluster_password": "",
+           "mq_queues": "",
+           "mq_topics": "",
+           "jgroups_encrypt_secret": "eap-app-secret",
+           "jgroups_encrypt_keystore": "jgroups.jceks",
+           "jgroups_encrypt_name": "",
+           "jgroups_encrypt_password": "",
+           "jgroups_cluster_password": "",
+           "auto_deploy_exploded": "false",
+           "sso_url": "/auth",
+           "sso_service_url": "/auth",
+           "sso_realm": "mta",
+           "sso_username": "",
+           "sso_password": "",
+           "sso_public_key": "",
+           "sso_bearer_only": "",
+           "sso_saml_keystore_secret": "eap7-app-secret",
+           "sso_saml_keystore": "keystore.jks",
+           "sso_saml_certificate_name": "jboss",
+           "sso_saml_keystore_password": "mykeystorepass",
+           "sso_secret": "",
+           "sso_enable_cors": "false",
+           "sso_saml_logout_page": "/",
+           "sso_disable_ssl_certificate_validation": "true",
+           "sso_truststore": "",
+           "sso_truststore_password": "",
+           "sso_truststore_secret": "eap7-app-secret",
+           "gc_max_metaspace_size": 512,
+           "max_post_size": "4294967296",
+           "sso_force_legacy_security": "false",
+           "db_database": "mta",
+           "postgresql_max_connections": "200",
+           "postgresql_shared_buffers": "",
+           "postgresql_cpu_request": "0.5",
+           "postgresql_mem_request": "0.5Gi",
+           "postgresql_cpu_limit": "2",
+           "postgresql_mem_limit": "2Gi",
+           "webLivenessInitialDelaySeconds": "120",
+           "webLivenessTimeoutSeconds": "10",
+           "webLivenessFailureThreshold": "3",
+           "webReadinessInitialDelaySeconds": "120",
+           "webReadinessTimeoutSeconds": "10",
+           "webReadinessFailureThreshold": "3",
+           "web_cpu_request": "0.5",
+           "web_mem_request": "0.5Gi",
+           "web_cpu_limit": "4",
+           "web_mem_limit": "4Gi",
+           "executor_cpu_request": "0.5",
+           "executor_mem_request": "0.5Gi",
+           "executor_cpu_limit": "4",
+           "executor_mem_limit": "4Gi",
+           "postgresql_image": "registry.redhat.io/rhel8/postgresql-10:1",
+           "web_readiness_probe": "/bin/bash, -c, ${JBOSS_HOME}/bin/readinessProbe.sh",
+           "web_liveness_probe": "/bin/bash, -c, ${JBOSS_HOME}/bin/livenessProbe.sh",
+           "executor_readiness_probe": "/bin/bash, -c, /opt/mta-cli/bin/livenessProbe.sh",
+           "executor_liveness_probe": "/bin/bash, -c, /opt/mta-cli/bin/livenessProbe.sh",
+           "tls_secret": ""
+         }
+       }
+      ]
+    capabilities: Basic Install
+    categories: Modernization & Migration
+    certified: "false"
+    containerImage: quay.io/windupeng/windup-operator-native:0.0.10
+    imagePullPolicy: Always
+    createdAt: 2022-04-27
+    repository: https://github.com/windup/windup-operator/
+    support: https://issues.redhat.com/projects/WINDUP
+    description: Windup is an analysis tool that supports the modernization and migration of Java applications.
+spec:
+  description: >
+    Windup is a web console application that supports large-scale Java application modernization and migration projects across a broad range of transformations and use cases.  
+    
+    
+    It analyzes application code, supports effort estimation, accelerates code migration, and enables users to move applications to containers.  
+
+
+    For more information please refer to the [Windup](https://windup.github.io/) page.
+
+  version: 5.4.0
+  maintainers:
+    - email: migrate@redhat.com
+      name: Windup
+  maturity: alpha
+  icon:
+    - base64data: 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
+      mediatype: image/png
+  links:
+    - name: Website
+      url: https://windup.github.io/
+    - name: GitHub
+      url: https://github.com/windup/windup-operator
+    - name: Documentation
+      url: https://windup.github.io/docs
+  customresourcedefinitions:
+    owned:
+      - description: >
+          Create Windup Web Console application.  
+          
+          
+          To access the Windup Web Console application from the "Developer" perspective, please go to Topology and click on the "Open URL" icon on the web-console pod.  
+          
+          
+          Alternatively from the "Administrator" perspective, please go to Networking->Routes and click on the Location hyperlink.  
+          
+          
+          In order to connect with default login credentials, please use "mta" as username and "password" as password.  
+          
+          
+          Known issue  
+
+          If you want to customize the Windup Web Console instance's parameters and you can not see any in the `Form view`, please switch to the `YAML view` and change them as needed.
+        displayName: Migration Toolkit for Applications
+        kind: Windup
+        name: windups.windup.jboss.org
+        version: v1
+  displayName: Migration Toolkit for Applications Operator
+  provider:
+    name: Red Hat
+  install:
+    spec:
+      clusterPermissions:
+        - rules:
+            - apiGroups:
+                - config.openshift.io
+              resources:
+                - ingresses
+              verbs:
+                - get
+                - list
+          serviceAccountName: windup-operator
+      permissions:
+        - rules:
+            - apiGroups:
+                - apps
+                - extensions
+              resources:
+                - deployments
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - ""
+              resources:
+                - pods
+                - persistentvolumeclaims
+                - services
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - networking.k8s.io
+              resources:
+                - ingresses
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - route.openshift.io
+              resources:
+                - routes
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - windup.jboss.org
+              resources:
+                - windups
+                - windups/status
+              verbs:
+                - create
+                - list
+                - watch
+                - get
+                - update
+                - delete
+                - patch
+          serviceAccountName: windup-operator
+      deployments:
+        - name: windup-operator.0.0.10
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                name: windup-operator
+            template:
+              metadata:
+                labels:
+                  name: windup-operator
+              spec:
+                serviceAccountName: windup-operator
+                containers:
+                  - name: windup-operator
+                    image: quay.io/windupeng/windup-operator-native:0.0.10
+                    imagePullPolicy: Always
+                    env:
+                      - name: WATCH_NAMESPACE
+                        valueFrom:
+                          fieldRef:
+                            fieldPath: metadata.namespace
+                        resources:
+                          limits:
+                            cpu: 1
+                            memory: 200Mi
+                          requests:
+                            cpu: 100m
+                            memory: 50Mi
+            strategy:
+              type: Recreate
+    strategy: deployment
+  installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: true
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: false
+      type: AllNamespaces
+  keywords:
+    - monitoring
+    - security
+    - alerting
+    - metric
+    - troubleshooting
+    - run-time
+    - migration
+    - modernization
