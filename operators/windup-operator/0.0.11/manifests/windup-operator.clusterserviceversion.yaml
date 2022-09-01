@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
-  name: windup-operator.0.0.11
+  name: windup-operator.v0.0.11
   namespace: placeholder
   annotations:
     alm-examples: >-
@@ -102,7 +102,8 @@ spec:
     
     It analyzes application code, supports effort estimation, accelerates code migration, and enables users to move applications to containers.
     
-    For more information please refer to the [https://windup.github.io/) page.
+    For more information please refer to the [https://
+    /) page.
 
   version: 0.0.11
   maintainers:
@@ -114,7 +115,7 @@ spec:
       mediatype: image/svg+xml
   links:
     - name: Website
-      url: windup.github.io/
+      url: https://windup.github.io
     - name: GitHub
       url: https://github.com/windup/windup-operator
   customresourcedefinitions:
